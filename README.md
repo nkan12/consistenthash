@@ -188,3 +188,6 @@ the ideas I tried are
  
 (2) Tweak the hash namespace. If I know the approx range of servers that will be used 
     in the system, I can tweak the hash to distribute evenly. 
+
+(3) Generate more number of hash copies for each server so that it will get more 
+    distributed.
