@@ -70,25 +70,39 @@ the job distribution across the servers.
 Run the cmd "python lb.py" as follows. It asks to give the list of jobs and servers.
 
 Kannan_laptop$ ./lb.py
+
 This is a program to do consistent hashing of jobs to servers provided.
 
 Enter comma separated jobs list followed by enter at the prompt "Jobs" - e.g Jobs=>0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
+
 And comma separated server list followed by enter at the prompt "Servers" - e.g Servers=>0,1,2,3,4
 
 The program will output the distribution of jobs to servers
 
 Jobs=>0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
+
 Servers=>0,1,2,3,4
+
 Node is 1 and job list is ['1', '6', '12', '13', '14', '15', '16']
+
 Node is 0 and job list is ['0', '20']
+
 Node is 3 and job list is ['3', '8', '9', '10', '11']
+
 Node is 2 and job list is ['2', '21', '22']
+
 Node is 4 and job list is ['4', '5', '7', '17', '18', '19']
+
 Jobs=>0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
+
 Servers=>0,1,3,4
+
 Node is 1 and job list is ['1', '6', '12', '13', '14', '15', '16']
+
 Node is 0 and job list is ['0', '2', '20']
+
 Node is 3 and job list is ['3', '8', '9', '10', '11']
+
 Node is 4 and job list is ['4', '5', '7', '17', '18', '19', '21', '22']
 
 
