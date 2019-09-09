@@ -186,8 +186,11 @@ the ideas I tried are
     as the plain round robin scheme since here we have a combination of consistent 
     hashing + load distribution
  
-(2) Tweak the hash namespace. If I know the approx range of servers that will be used 
-    in the system, I can tweak the hash to distribute evenly. 
+(2) Tweak the hash namespace  and the hash function
 
 (3) Generate more number of hash copies for each server so that it will get more 
     distributed.
+
+    (3) seems to be the solution to have more even distribution of jobs. Instead
+        of 3 replicas for each server if I have in the order of 30 I can have
+        more even distribution of jobs.
