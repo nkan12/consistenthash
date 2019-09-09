@@ -11,8 +11,8 @@ import pdb
 @author: Kannan Narayanan
 
 An implementation of load balancing algorithm across distributed servers. 
-Each server receives the full set of objects [0,1,.., 4025] and the full set 
-of server ids [1, 2, .., m]. This program takes the list of jobs and servers
+Each server receives the full set of objects [0,1,.., 4095] and the full set 
+of server ids [1, 2, .., 100]. This program takes the list of jobs and servers
 from stdin and outputs the job distribution across servers.
 
 The algorighm uses consistent hashing. The ring has a list of nodes that are 
