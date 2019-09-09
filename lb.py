@@ -12,7 +12,7 @@ import pdb
 
 An implementation of load balancing algorithm across distributed servers. 
 Each server receives the full set of objects [0,1,.., 4095] and the full set 
-of server ids [0,1, .., 100]. This program takes the list of jobs and servers
+of server ids [0,1, .., 999]. This program takes the list of jobs and servers
 from stdin and outputs the job distribution across servers.
 
 The algorighm uses consistent hashing. The ring has a list of nodes that are 
@@ -146,8 +146,8 @@ def loadBalance(newJobs, newServers, ring, distribution):
         print ("Jobs exceeded limit 4096")
         return
        
-    if len(newServers) > 100:
-        print ("Servers exceeded limit 100")
+    if len(newServers) > 1000:
+        print ("Servers exceeded limit 1000")
         return
     distribution.clear()
     del ring.nodes[:]

@@ -3,7 +3,7 @@ Consistent Hashing Load Balancer
 
 This is an implementation of load balancing algorithm across distributed servers.
 Each server receives the full set of objects [0,1,.., 4095] and the full set
-of server ids [0,1, .., 100]. This program takes the list of jobs and servers
+of server ids [0,1, .., 999]. This program takes the list of jobs and servers
 from stdin and outputs the job distribution across servers.
 
 Theory of Operation
