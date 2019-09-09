@@ -168,3 +168,18 @@ see any job movement
 NoJobsMovedNodes:
 ["1", "0", "3"]
 
+
+TODO(WIP)
+--------
+
+With consistent hashing I am able to minimize job migrations. But, I have to tweak
+some things to get even more unoform distribution of load across servers. Some of 
+the ideas I tried are
+
+(1) Calculate a max max jobs per server and if the server already has that many jobs,
+    move the job to the next hash until you find a hash with load less than the max allowed
+
+    When I tried this, I saw more migration of jobs when the server goes down
+
+(2) Tweak the hash namespace. If I know the approx range of servers that will be used in the
+    system, I can tweak the hash to distribute evenly. 
