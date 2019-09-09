@@ -173,13 +173,18 @@ TODO(WIP)
 --------
 
 With consistent hashing I am able to minimize job migrations. But, I have to tweak
-some things to get even more unoform distribution of load across servers. Some of 
+some things to get even more uniform distribution of load across servers. Some of 
 the ideas I tried are
 
-(1) Calculate a max max jobs per server and if the server already has that many jobs,
-    move the job to the next hash until you find a hash with load less than the max allowed
+(1) Calculate the max max jobs per server (jobs/server * loadfactor)  and if a server 
+    already has that many jobs, move the job to the next hash until you find a hash 
+    with load less than the max load.
 
-    When I tried this, I saw more migration of jobs when the server goes down
-
-(2) Tweak the hash namespace. If I know the approx range of servers that will be used in the
-    system, I can tweak the hash to distribute evenly. 
+    When I tried this, I saw more migration of jobs when new servers are added. 
+    Whenever we change the number of servers, the max jobs per server  is calculated 
+    differently and the job distribution will change. But, the change is not as much 
+    as the plain round robin scheme since here we have a combination of consistent 
+    hashing + load distribution
+ 
+(2) Tweak the hash namespace. If I know the approx range of servers that will be used 
+    in the system, I can tweak the hash to distribute evenly. 
