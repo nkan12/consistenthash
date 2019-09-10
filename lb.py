@@ -29,6 +29,8 @@ the job distribution
 
 NUM_JOBS = 4095
 
+to_positive = 1<<32
+
 class Node(object):
 
     '''
@@ -41,9 +43,9 @@ class Node(object):
         self.id = id
         if append:
            appended_id = id + append
-           self.hashId = (binascii.crc32(appended_id)% (1<<32))%NUM_JOBS
+           self.hashId = (binascii.crc32(appended_id)% to_positive)%NUM_JOBS
         else:
-           self.hashId = (binascii.crc32(id)% (1<<32))%NUM_JOBS
+           self.hashId = (binascii.crc32(id)% to_positive)%NUM_JOBS
         
 
 class Ring(object):
@@ -155,7 +157,7 @@ def loadBalance(newJobs, newServers, ring, distribution):
         ring.addNode(i) 
     #ring.dumpNodes() 
     for  i  in newJobs:
-        myHash = (binascii.crc32(i)% (1<<32))%NUM_JOBS
+        myHash = (binascii.crc32(i)% to_positive)%NUM_JOBS
         #print myHash,i
         nodeId = ring.getNode(myHash)
         if nodeId in distribution:
