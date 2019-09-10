@@ -126,6 +126,26 @@ class BehaviourTestCase(unittest.TestCase):
         outFile.write("\n")
         self.assertGreaterEqual(len(noJobsMoved), 3)
 
+    def testcase_7_no_jobs(self):
+        '''
+        Empty jobs and servers
+        '''
+        global oldDistribution
+        jobs = "" 
+        servers = "" 
+        lb.processInput(jobs, servers, self.ring, self.distribution)
+        outFile.write("\n\ntestcase_7_no_jobs \n")
+        outFile.write("jobs:\n");
+        outFile.write(json.dumps(jobs))
+        outFile.write("\nservers: \n");
+        outFile.write(json.dumps(servers))
+        outFile.write("\ndistribution: \n");
+        outFile.write(json.dumps(self.distribution))
+        noJobsMoved = utilities.getNoJobsMoved(oldDistribution, self.distribution)
+        outFile.write("\nNoJobsMovedNodes: \n");
+        self.assertEqual(len(self.distribution.keys()), 0)
+        outFile.write(json.dumps(noJobsMoved))
+
     def tearDown(self):
         self.ring = None
 
