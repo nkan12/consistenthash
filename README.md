@@ -172,25 +172,30 @@ NoJobsMovedNodes:
 TODO(WIP)
 --------
 
+(1) Improve job distribution across servers to be more even
+-----------------------------------------------------------
 With consistent hashing I am able to minimize job migrations. But, I have to tweak
 some things to get even more uniform distribution of load across servers. Some of 
 the ideas I tried are
 
-(1) Calculate the max max jobs per server (jobs/server * loadfactor)  and if a server 
+(a) Calculate the max max jobs per server (jobs/server * loadfactor)  and if a server 
     already has that many jobs, move the job to the next hash until you find a hash 
     with load less than the max load.
 
     When I tried this, I saw more migration of jobs when new servers are added. 
     Whenever we change the number of servers, the max jobs per server  is calculated 
-    differently and the job distribution will change. But, the change is not as much 
-    as the plain round robin scheme since here we have a combination of consistent 
-    hashing + load distribution
+    differently and the job distribution will change. But, the change is still not
+    bad since here we have a combination of consistent hashing + load distribution
  
-(2) Tweak the hash namespace  and the hash function
+(b) Tweak the hash namespace  and the hash function
 
-(3) Generate more number of hash copies for each server so that it will get more 
+(c) Generate more number of hash copies for each server so that it will get more 
     distributed.
 
-    (3) seems to be the solution to have more even distribution of jobs. Instead
+    (c) seems to be the solution to have more even distribution of jobs. Instead
         of 3 replicas for each server if I have in the order of 30 I can have
         more even distribution of jobs.
+
+(2) Use more efficient datastructure
+------------------------------------
+Instead of list, I can use binary search tree to improve search efficiency.
